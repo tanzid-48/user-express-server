@@ -1,6 +1,7 @@
 
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const port = process.env.PORT || 5000
 
   const users = [
@@ -62,14 +63,31 @@ const port = process.env.PORT || 5000
   }
 ]
 
+// Adds headers: Access-Control-Allow-Origin: *
+app.use(cors())
+
+// json
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.send('Hello Express World! ')
 })
 
 // GET method route
 app.get('/users', (req, res) => {
-  res.send('GET request to the users')
+  res.send(users);
 })
+
+app.post('/users', (req, res) => {
+    console.log("get data form User:",req.body);
+
+    const newUser =req.body
+    newUser.id = users.length +1;
+    users.push(newUser);
+
+  res.send( {success:true,message:'POST request to the UserPage'})
+})
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
