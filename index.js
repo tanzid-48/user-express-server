@@ -129,6 +129,17 @@ app.post('/users', (req, res) => {
 app.get('/posts', (req, res) => {
   res.send(posts);
 })
+app.post('/posts',(req,res) =>{
+  console.log('get user from userPost',req.body);
+
+    const newPost =req.body
+    newPost.id = posts.length +1;
+    posts.push(newPost);
+
+
+  res.send({success:true,message:'post to request to Post'});
+
+})
 
 
 app.listen(port, () => {
