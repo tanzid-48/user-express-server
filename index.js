@@ -61,7 +61,44 @@ const port = process.env.PORT || 5000
     "username": "mim55",
     "isActive": false
   }
-]
+];
+const posts = [
+  {
+    id: 1,
+    userId: 1,
+    title: "Learning Node.js",
+    body: "Node.js is powerful for backend development",
+    createdAt: "2026-05-05"
+  },
+  {
+    id: 2,
+    userId: 2,
+    title: "React Basics",
+    body: "React helps build interactive UIs",
+    createdAt: "2026-05-05"
+  },
+  {
+    id: 3,
+    userId: 3,
+    title: "Express Guide",
+    body: "Express makes API building simple",
+    createdAt: "2026-05-06"
+  },
+  {
+    id: 4,
+    userId: 1,
+    title: "JavaScript Tips",
+    body: "Use modern ES6 features",
+    createdAt: "2026-05-06"
+  },
+  {
+    id: 5,
+    userId: 4,
+    title: "Frontend vs Backend",
+    body: "Both are important in web development",
+    createdAt: "2026-05-06"
+  }
+];
 
 // Adds headers: Access-Control-Allow-Origin: *
 app.use(cors())
@@ -86,6 +123,11 @@ app.post('/users', (req, res) => {
     users.push(newUser);
 
   res.send( {success:true,message:'POST request to the UserPage'})
+})
+
+// GET method route
+app.get('/posts', (req, res) => {
+  res.send(posts);
 })
 
 
